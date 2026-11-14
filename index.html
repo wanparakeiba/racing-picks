@@ -16,40 +16,85 @@
 {"@context": "https://schema.org","@type": "WebSite","name": "競馬・競輪予想まとめ","url": "https://wanparakeiba.github.io/racing-picks/","inLanguage": "ja","description": "中央競馬（JRA）と地方競馬・競輪の予想、結果検証と回収率を毎日公開するページ。"}
 </script>
 <style>
-  :root { --navy:#0d1b3e; --gold:#c9a227; --bg:#f6f4ee; --card:#ffffff; --ink:#1c2333; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; }
-  header { background: var(--navy); color:#fff; padding: 28px 16px 22px; text-align:center; border-bottom: 4px solid var(--gold); }
-  header h1 { margin:0 0 6px; font-size: 26px; letter-spacing: .04em; }
-  header p { margin:0; font-size: 14px; opacity:.9; }
-  main { max-width: 860px; margin: 0 auto; padding: 20px 14px 40px; }
-  section { background: var(--card); border-radius: 10px; padding: 18px 18px 8px; margin-bottom: 18px; box-shadow: 0 1px 4px rgba(13,27,62,.08); }
-  h2 { font-size: 19px; margin: 0 0 10px; border-left: 5px solid var(--gold); padding-left: 10px; color: var(--navy); }
-  h3 { font-size: 16px; margin: 16px 0 6px; color: var(--navy); }
-  table { width:100%; border-collapse: collapse; font-size: 14px; margin-bottom: 12px; }
-  th, td { border-bottom: 1px solid #e6e1d3; padding: 7px 6px; text-align: left; vertical-align: top; }
-  th { background: #f0ead6; color: var(--navy); white-space: nowrap; }
-  .honmei { font-weight: bold; color: #b3001b; }
-  .cta { display:block; text-align:center; background:#06c755; color:#fff; font-weight:bold; padding: 14px 10px; border-radius: 8px; text-decoration:none; margin: 12px 0 18px; font-size: 16px; }
-  .sub-link { display:block; text-align:center; background: var(--navy); color:#fff; padding: 12px 10px; border-radius: 8px; text-decoration:none; margin: 0 0 18px; font-size: 15px; }
-  .note { font-size: 12.5px; color:#5a6274; }
-  .ad-slot { text-align:center; margin: 4px 0 18px; }
-  .ad-label { font-size: 11px; color:#5a6274; letter-spacing:.1em; }
-  .ad-slot img { max-width: 100%; height: auto; }
-  footer { text-align:center; font-size: 12px; color:#5a6274; padding: 10px 14px 30px; }
-  .big { font-size: 17px; font-weight: bold; }
+  :root{
+    --gold:#c9a227; --gold-lt:#e8cf7a; --gold-dk:#8a6d1c;
+    --ink:#f2ead2; --ink-dim:#b9b094; --panel:#101a33; --panel2:#0b1327;
+    --red:#e5484d; --line:rgba(201,162,39,.38);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);line-height:1.75;
+    background:radial-gradient(1200px 600px at 50% -80px,#1b2c55 0%,#0a1122 55%,#060a16 100%);background-color:#060a16;}
+  .serif{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif}
+  header{text-align:center;padding:44px 16px 30px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(201,162,39,.10),rgba(201,162,39,0) 70%);}
+  .orn{color:var(--gold);letter-spacing:.6em;font-size:13px;margin-bottom:10px}
+  header h1{margin:0;font-size:38px;letter-spacing:.14em;color:var(--gold-lt);font-weight:600;
+    text-shadow:0 2px 18px rgba(201,162,39,.35)}
+  header .sub{margin:8px 0 0;font-size:14px;color:var(--ink)}
+  header .sub2{margin:2px 0 0;font-size:12px;color:var(--ink-dim);letter-spacing:.08em}
+  .plaque{display:inline-block;margin-top:16px;padding:5px 18px;border:1px solid var(--gold);border-radius:999px;
+    color:var(--gold-lt);font-size:13px;letter-spacing:.12em;background:rgba(201,162,39,.08)}
+  main{max-width:880px;margin:0 auto;padding:26px 14px 90px}
+  section{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:12px;
+    padding:20px 18px 10px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .room-head{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}
+  .room-head .en{font-size:10.5px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
+  h2{font-size:20px;margin:0;color:var(--gold-lt);letter-spacing:.06em;font-weight:600}
+  h3{font-size:16px;margin:14px 0 6px;color:var(--gold-lt)}
+  p{margin:0 0 10px}
+  .cta{display:block;text-align:center;background:#06c755;color:#fff;font-weight:bold;padding:15px 10px;border-radius:10px;
+    text-decoration:none;margin:12px 0 10px;font-size:16.5px;box-shadow:0 6px 18px rgba(6,199,85,.35)}
+  .note{font-size:12.5px;color:var(--ink-dim)}
+  /* race rows */
+  .race{display:flex;gap:12px;padding:13px 12px;border:1px solid rgba(201,162,39,.18);border-radius:10px;margin-bottom:10px;background:rgba(255,255,255,.02)}
+  .race .time{flex:0 0 auto;width:56px;height:56px;border:1px solid var(--gold);border-radius:50%;color:var(--gold-lt);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12.5px;line-height:1.25;background:rgba(201,162,39,.07)}
+  .race .time b{font-size:14px}
+  .race .body{flex:1;min-width:0}
+  .race .name{font-size:13px;color:var(--ink-dim);letter-spacing:.04em}
+  .race .pick{font-size:17.5px;font-weight:bold;color:#fff;margin:1px 0 2px}
+  .race .pick .mark{color:var(--red)}
+  .race .point{font-size:13px;color:var(--ink-dim);margin:0}
+  .race.ichioshi{border:1.5px solid var(--gold);background:linear-gradient(180deg,rgba(201,162,39,.14),rgba(201,162,39,.03));
+    box-shadow:0 0 22px rgba(201,162,39,.25)}
+  .tag{display:inline-block;background:var(--gold);color:#231a02;font-size:11px;font-weight:bold;border-radius:4px;padding:1px 8px;margin-left:8px;vertical-align:2px;letter-spacing:.06em}
+  /* KPI */
+  .kpis{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .kpi{flex:1 1 140px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:12px 6px;background:rgba(201,162,39,.05)}
+  .kpi .num{font-size:30px;color:var(--gold-lt);line-height:1.1}
+  .kpi .lbl{font-size:12px;color:var(--ink-dim);margin-top:4px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:12px}
+  th,td{border-bottom:1px solid rgba(201,162,39,.16);padding:7px 6px;text-align:left;vertical-align:top}
+  th{color:var(--gold-lt);white-space:nowrap;font-weight:600}
+  .pos{color:#7ee2a0;font-weight:bold}
+  .sub-link{display:block;text-align:center;border:1px solid var(--gold);color:var(--gold-lt);padding:12px 10px;border-radius:10px;
+    text-decoration:none;margin:0 0 14px;font-size:15px;background:rgba(201,162,39,.06)}
+  .big{font-size:18px;font-weight:bold;color:#fff}
+  .big .mark{color:var(--red)}
+  .ad-slot{text-align:center;margin:2px 0 20px;padding:10px 6px 12px;border:1px dashed rgba(201,162,39,.35);border-radius:12px;background:rgba(0,0,0,.25)}
+  .ad-label{font-size:11px;color:var(--gold);letter-spacing:.14em;margin-bottom:6px}
+  .ad-slot img{max-width:100%;height:auto}
+  footer{text-align:center;font-size:12px;color:var(--ink-dim);padding:8px 14px 34px}
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(6,10,22,.92);backdrop-filter:blur(6px);
+    border-top:1px solid var(--gold);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+  .sticky a{display:block;text-align:center;background:#06c755;color:#fff;font-weight:bold;text-decoration:none;
+    padding:12px;border-radius:10px;font-size:15.5px}
+  @media (max-width:520px){ header h1{font-size:31px} .race .pick{font-size:16px} }
 </style>
 </head>
 <body>
 <header>
-  <h1>競馬・競輪予想まとめ</h1>
-  <p>毎日の厳選予想と、全レースの結果検証・回収率を公開しています</p>
+  <div class="orn">◆ ◆ ◆</div>
+  <h1 class="serif">競馬・競輪の館</h1>
+  <p class="sub">わんぱら予想 ― 厳選と検証の館へ、ようこそ</p>
+  <p class="sub2">KEIBA &amp; KEIRIN PREDICTION HALL</p>
+  <div class="plaque">本日の開館 ― 2026年11月14日（土）</div>
 </header>
 <main>
 
 <section>
-  <h2>全レースの予想はLINEオープンチャットで公開中</h2>
-  <p>中央・地方・競輪の全レース予想は、LINEオープンチャット「わんぱら部屋（マイネルラビリンス）」で全て公開しています。このページでは厳選レースと検証結果のまとめを掲載します。</p>
+  <div class="room-head"><span class="en">Full Card</span><h2 class="serif">全レースは奥の間で</h2></div>
+  <p>中央・地方・競輪の全レース予想は、LINEオープンチャット「わんぱら部屋（マイネルラビリンス）」で全て公開しています。この館では厳選レースと検証結果のまとめを展示します。</p>
   <a class="cta" href="https://line.me/ti/g2/MK4_KOPN2lzC96DkJ-if676A2wQzrPxajNGqiw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">LINEオープンチャット「わんぱら部屋」を見る</a>
 </section>
 
@@ -59,16 +104,8 @@
   </div>
 
 <section>
-  <h2>本日の厳選予想（2026年11月14日・JRA）</h2>
-  <table>
-    <tr><th>レース</th><th>発走</th><th>本命</th><th>ポイント</th></tr>
-    <tr><td>福島10R 西郷特別</td><td>14:40</td><td class="honmei">◎⑩アラナコア</td><td>ダ1700で近4走すべて0.6秒差以内。先行有利のコースで軸</td></tr>
-    <tr><td>東京10R 奥多摩S</td><td>14:55</td><td class="honmei">◎⑤ヒシアマン</td><td>厩舎の話◎＋特選指名の二重支持</td></tr>
-    <tr><td>福島11R フルーツラインC</td><td>15:15</td><td class="honmei">◎②ローズカリス</td><td>逃げ馬5頭の激戦区。好位で運べるかが鍵</td></tr>
-    <tr><td>東京11R 武蔵野S（GIII）</td><td>15:30</td><td class="honmei">◎⑥ドンインザムード</td><td>このレース唯一の厩舎◎。東京ダ1600巧者の⑦が相手筆頭</td></tr>
-    <tr><td>京都11R デイリー杯2歳S（GII）</td><td>15:45</td><td class="honmei">◎⑪シェフザーデ ★今日イチ</td><td>指数85。デビュー戦の上がり33.9がこの舞台の勝ちパターンに合う</td></tr>
-    <tr><td>福島12R</td><td>16:00</td><td class="honmei">頭④マーシーラン／軸⑤ムーンリットアイル</td><td>⑤は安定感抜群も勝ち味に欠けるため、頭は52kg減量の④に</td></tr>
-  </table>
+  <div class="room-head"><span class="en">Today's Selection</span><h2 class="serif">厳選の間 ― 本日の厳選予想</h2></div>
+  <div class="race"><div class="time"><span>発走</span><b>14:40</b></div><div class="body"><div class="name">福島10R 西郷特別（ダ1700m）</div><div class="pick"><span class="mark">◎</span>⑩アラナコア</div><p class="point">ダ1700で近4走すべて0.6秒差以内。先行有利のコースで軸</p></div></div><div class="race"><div class="time"><span>発走</span><b>14:55</b></div><div class="body"><div class="name">東京10R 奥多摩S（芝1400m）</div><div class="pick"><span class="mark">◎</span>⑤ヒシアマン</div><p class="point">厩舎の話◎＋特選指名の二重支持</p></div></div><div class="race"><div class="time"><span>発走</span><b>15:15</b></div><div class="body"><div class="name">福島11R フルーツラインC（ダ1150m）</div><div class="pick"><span class="mark">◎</span>②ローズカリス</div><p class="point">逃げ馬5頭の激戦区。好位で運べるかが鍵</p></div></div><div class="race"><div class="time"><span>発走</span><b>15:30</b></div><div class="body"><div class="name">東京11R 武蔵野S GIII（ダ1600m）</div><div class="pick"><span class="mark">◎</span>⑥ドンインザムード</div><p class="point">このレース唯一の厩舎◎。東京ダ1600巧者の⑦が相手筆頭</p></div></div><div class="race ichioshi"><div class="time"><span>発走</span><b>15:45</b></div><div class="body"><div class="name">京都11R デイリー杯2歳S GII（芝1600m）<span class="tag">★本日の最上席</span></div><div class="pick"><span class="mark">◎</span>⑪シェフザーデ</div><p class="point">指数85。デビュー戦の上がり33.9がこの舞台の勝ちパターンに合う</p></div></div><div class="race"><div class="time"><span>発走</span><b>16:00</b></div><div class="body"><div class="name">福島12R（芝1200m）</div><div class="pick">頭④マーシーラン／軸⑤ムーンリットアイル</div><p class="point">⑤は安定感抜群も勝ち味に欠けるため、頭は52kg減量の④に</p></div></div>
   <p class="note">※買い目の詳細はオープンチャットと詳細ページで公開しています。予想はすべて事前に公開し、結果は当夜に検証します。</p>
 </section>
 
@@ -82,9 +119,9 @@
   </div>
 
 <section>
-  <h2>明日の注目レース（2026年11月15日）</h2>
-  <h3>京都11R エリザベス女王杯（G1）芝2200m 15:40発走</h3>
-  <p><span class="big">◎1 ラヴァンダ</span>　○7 カムニャック　▲3 ステレンボッシュ　☆13 ジョスラン</p>
+  <div class="room-head"><span class="en">Tomorrow's Main</span><h2 class="serif">明日の大一番</h2></div>
+  <h3>京都11R エリザベス女王杯（G1）芝2200m ― 11月15日 15:40発走</h3>
+  <p><span class="big"><span class="mark">◎</span>1 ラヴァンダ</span>　○7 カムニャック　▲3 ステレンボッシュ　☆13 ジョスラン</p>
   <p>切る人気馬：16アクアヴァーナル、14チェルヴィニア、9クイーンズウォーク。雨予報の京都で、馬場が渋ったときの適性まで含めて組み立てています。</p>
 </section>
 
@@ -94,14 +131,19 @@
   </div>
 
 <section>
-  <h2>直近の検証結果（ペーパー集計）</h2>
+  <div class="room-head"><span class="en">Verified Results</span><h2 class="serif">検証の間 ― 直近の検証結果</h2></div>
+  <div class="kpis">
+    <div class="kpi"><div class="num serif">126.4%</div><div class="lbl">11/13 競輪（46レース）回収率</div></div>
+    <div class="kpi"><div class="num serif">139.4%</div><div class="lbl">11/11 競輪ナイター回収率</div></div>
+    <div class="kpi"><div class="num serif">32,720円</div><div class="lbl">11/13 福井8R 三連単の払戻</div></div>
+  </div>
   <table>
     <tr><th>日付</th><th>対象</th><th>回収率</th><th>ひとこと</th></tr>
-    <tr><td>11月13日</td><td>競輪（46レース）</td><td><strong>126.4%</strong></td><td>福井8R 三連単32,720円が最大。福井は324.1%</td></tr>
+    <tr><td>11月13日</td><td>競輪（46レース）</td><td class="pos">126.4%</td><td>福井8R 三連単32,720円が最大。福井は324.1%</td></tr>
     <tr><td>11月13日</td><td>川崎競馬（12レース）</td><td>66.4%</td><td>◎の勝率は58.3%。今日イチの軸固定が裏目に</td></tr>
     <tr><td>11月13日</td><td>園田競馬（12レース）</td><td>32.6%</td><td>今日イチ10Rは的中。序盤の取りこぼしが響いた</td></tr>
     <tr><td>11月12日</td><td>競輪（全レース）</td><td>94.2%</td><td>昼の部134.0%、夜は失速</td></tr>
-    <tr><td>11月11日</td><td>競輪（ナイター）</td><td><strong>139.4%</strong></td><td>パターンB（3番手突き抜け）が機能</td></tr>
+    <tr><td>11月11日</td><td>競輪（ナイター）</td><td class="pos">139.4%</td><td>パターンB（3番手突き抜け）が機能</td></tr>
   </table>
   <p class="note">負けた日の数字もそのまま載せます。予想の購入判断は、派手な的中報告ではなく、この検証の積み重ねでどうぞ。</p>
   <a class="sub-link" href="https://muse.ai/s/jing-lun-yu-xiang-toraiaru-gong-kai-ug70xpxvdxwwsxu/wjQ6KKj8XMYhoPWxQvyuxns6HHncikmZfHpWJ5Mrw98">当日の全レース予想・結果検証の詳細ページはこちら</a>
@@ -113,7 +155,7 @@
   </div>
 
 <section>
-  <h2>予想の組み立て方</h2>
+  <div class="room-head"><span class="en">Our Method</span><h2 class="serif">予想の作法</h2></div>
   <p>根拠は「指数・追い切り・厩舎の話・近走内容」の4点。人気馬でも崩れる材料が揃えば「危険な人気馬」として名前を挙げて切ります（ただし完全除外はせず、相手までには残すのがルール）。競輪はライン読みを軸に、安い配当のレースは見送ります。全レースの◎は当夜に必ず検証し、回収率を公開します。</p>
 </section>
 
@@ -124,7 +166,8 @@
 
 </main>
 <footer>
-  競馬・競輪予想まとめ｜予想は情報提供を目的としたもので、的中を保証するものではありません。馬券・車券の購入はご自身の判断でお願いします。
+  競馬・競輪の館（競馬・競輪予想まとめ）｜予想は情報提供を目的としたもので、的中を保証するものではありません。馬券・車券の購入はご自身の判断でお願いします。
 </footer>
+<div class="sticky"><a href="https://line.me/ti/g2/MK4_KOPN2lzC96DkJ-if676A2wQzrPxajNGqiw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">全レースの予想はオープンチャットで全て公開中</a></div>
 </body>
 </html>
